@@ -14,10 +14,10 @@
 # ENVIRONMENT
 #--------------------------------------------------------------------
 
-# CI_ENVIRONMENT = production
+# CI_ENVIRONMENT = development
 
 #--------------------------------------------------------------------
-# APP
+# APP 
 #--------------------------------------------------------------------
 
 # app.baseURL = ''
@@ -30,13 +30,13 @@
 # DATABASE
 #--------------------------------------------------------------------
 
-# database.default.hostname = localhost
-# database.default.database = digital_blog_db
-# database.default.username = my_user
-# database.default.password = my_password
-# database.default.DBDriver = Postgre
-# database.default.DBPrefix =
-# database.default.port = 3306
+database.default.hostname = localhost
+database.default.database = digital_blog
+database.default.username = root
+database.default.password = senha_do_banco
+database.default.DBDriver = MySQLi
+database.default.DBPrefix =
+database.default.port = 3306
 
 # If you use MySQLi as tests, first update the values of Config\Database::$tests.
 # database.tests.hostname = localhost
