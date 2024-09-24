@@ -14,7 +14,7 @@
 # ENVIRONMENT
 #--------------------------------------------------------------------
 
-# CI_ENVIRONMENT = development
+CI_ENVIRONMENT = development
 
 #--------------------------------------------------------------------
 # APP 
@@ -31,7 +31,7 @@
 #--------------------------------------------------------------------
 
 database.default.hostname = localhost
-database.default.database = digital_blog
+database.default.database = blog
 database.default.username = root
 database.default.password = senha_do_banco
 database.default.DBDriver = MySQLi
