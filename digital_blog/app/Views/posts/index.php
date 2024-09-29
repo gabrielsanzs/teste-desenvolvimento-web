@@ -6,12 +6,13 @@
   <title>Lista de Posts</title>
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     body {
       background-color: #f8f9fa;
     }
     .navbar {
-      background-color: #001f3f; /* Azul marinho */
+      background-color: #001f3f;
     }
     .navbar-brand, .nav-link {
       color: white !important;
@@ -45,9 +46,14 @@
             <a class="nav-link" href="/posts">Posts</a>
           </li>
         </ul>
-        <ul class="navbar-nav">
+        <ul class="navbar-nav d-flex align-items-center">
           <li class="nav-item">
-            <a class="nav-link" href="/logout">Sair</a>
+            <span class="navbar-text text-white me-2">
+              <i class="fas fa-user"></i> <?= session()->get('user_name'); ?>
+            </span>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link btn btn-link" data-bs-toggle="modal" data-bs-target="#logoutModal">Sair</butto>
           </li>
         </ul>
       </div>
@@ -55,22 +61,45 @@
   </nav>
 
   <div class="container mt-4">
-    <h1 class="mb-4">Lista de Posts</h1>
-    <a href="/posts/create" class="btn btn-primary mb-3">Criar Novo Post</a>
+  <h1 class="mb-4">Lista de Posts</h1>
+  <a href="/posts/create" class="btn btn-primary mb-3">Criar Novo Post</a>
 
-    <?php foreach ($posts as $post): ?>
-      <div class="card">
-        <div class="card-body">
-          <h2 class="card-title"><?= $post['title'] ?></h2>
-          <p class="card-text"><?= $post['description'] ?></p>
-          <a href="/posts/edit/<?= $post['id'] ?>" class="btn btn-warning">Editar</a>
-          <a href="/posts/delete/<?= $post['id'] ?>" class="btn btn-danger">Deletar</a>
-        </div>
+  <?php foreach ($posts as $post): ?>
+    <div class="card mb-4">
+      <div class="card-body">
+        <h2 class="card-title"><?= $post['title'] ?></h2>
+        <p class="card-text"><?= $post['description'] ?></p>
+        <?php if (!empty($post['img_url'])): ?>
+          <img src="<?= $post['img_url'] ?>" alt="Imagem do Post" class="img-fluid mb-3">
+        <?php endif; ?>
       </div>
-    <?php endforeach; ?>
-  </div>
+      <div class="card-footer text-end">
+        <a href="/posts/edit/<?= $post['id'] ?>" class="btn btn-warning">Editar</a>
+        <a href="/posts/delete/<?= $post['id'] ?>" class="btn btn-danger">Deletar</a>
+      </div>
+    </div>
+  <?php endforeach; ?>
+</div>
 
-  <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
+<!-- Modal de Confirmação -->
+<div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="logoutModalLabel">Confirmar Saída</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Você tem certeza que deseja sair?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <a href="/logout" class="btn btn-danger">Sair</a>
+            </div>
+        </div>
+    </div>
+</div>

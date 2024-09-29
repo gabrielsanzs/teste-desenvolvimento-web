@@ -56,15 +56,21 @@ class PostController extends Controller {
         return view(name: 'posts/edit', data: $data);
     }
 
-    public function update($id): RedirectResponse {
+    public function update($id)
+    {
         $postModel = new PostModel();
+        
         $data = [
-            'title' => $this->request->getPost(index: 'title'),
-            'description' => $this->request->getPost(index: 'description'),
-            'img_url' => $this->request->getPost(index: 'img_url')
+            'title'       => $this->request->getPost('title'),
+            'description' => $this->request->getPost('description'),
+            'img_url'     => $this->request->getPost('img_url')
         ];
-        $postModel->update(id: $id, row: $data);
-        return redirect()->to(uri: '/posts');
+    
+        if ($postModel->update($id, $data)) {
+            return redirect()->to('/posts')->with('success', 'Post atualizado com sucesso.');
+        } else {
+            return redirect()->back()->withInput()->with('error', 'Erro ao atualizar o post.');
+        }
     }
 
     public function delete($id): RedirectResponse {

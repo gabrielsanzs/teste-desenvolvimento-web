@@ -61,11 +61,11 @@ class AuthController extends Controller
         $user = $userModel->where(key: 'email', value: $email)->first();
 
         if (!$user) {
-            return redirect()->back()->with('error', 'Usuário não encontrado.');
+            return redirect()->back()->with('error', 'E-mail ou senha incorretos!');
         }
         
         if (!password_verify($password, $user['password'])) {
-            return redirect()->back()->with('error', 'Senha incorreta.');
+            return redirect()->back()->with('error', 'E-mail ou senha incorretos!');
         }
         
         $session->set('user_id', $user['id']);
