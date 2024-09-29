@@ -3,18 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
+  <title>Esqueceu a Senha</title>
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     body {
       background-color: #f8f9fa;
-    }
-    .navbar {
-      background-color: #001f3f; /* Azul marinho */
-    }
-    .navbar-brand, .nav-link {
-      color: white !important;
     }
     .card {
       border: none;
@@ -34,36 +28,26 @@
 
 <div class="container d-flex justify-content-center align-items-center min-vh-100">
   <div class="card p-4" style="width: 100%; max-width: 400px;">
-    <h2 class="text-center mb-4">Login</h2>
+    <h2 class="text-center mb-4">Recuperar Senha</h2>
 
+    <!-- Exibição de mensagens de erro, se houver -->
     <?php if (session()->getFlashdata('error')): ?>
       <div class="alert alert-danger">
         <?= session()->getFlashdata('error'); ?>
       </div>
     <?php endif; ?>
 
-    <?php if (session()->getFlashdata('success')): ?>
-      <div class="alert alert-success">
-        <?= session()->getFlashdata('success'); ?>
-      </div>
-    <?php endif; ?>
-
-    <form action="/login" method="post">
+    <form action="/send-reset-link" method="post">
       <div class="mb-3">
-        <label for="email" class="form-label">Email</label>
-        <input type="email" name="email" class="form-control" id="email" placeholder="Digite seu email" required>
+          <label for="email" class="form-label">Digite seu email</label>
+          <input type="email" name="email" class="form-control" id="email" placeholder="Digite seu email" required>
       </div>
-      <div class="mb-3">
-        <label for="password" class="form-label">Senha</label>
-        <input type="password" name="password" class="form-control" id="password" placeholder="Digite sua senha" required>
-      </div>
-      <button type="submit" class="btn btn-primary w-100">Entrar</button>
+      <button type="submit" class="btn btn-primary w-100">Enviar email de redefinição</button>
     </form>
+
+
     <div class="text-center mt-3">
-      <a href="/forgot-password" class="text-decoration-none">Esqueceu a senha?</a>
-    </div>
-    <div class="text-center mt-3">
-      <a href="/register" class="text-decoration-none">Não tem conta? Registre-se</a>
+      <a href="/login" class="text-decoration-none">Voltar ao Login</a>
     </div>
   </div>
 </div>
