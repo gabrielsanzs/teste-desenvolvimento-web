@@ -26,5 +26,5 @@ $routes->post(from: '/posts/store', to: 'PostController::store');
 $routes->get(from: '/posts/edit/(:num)', to: 'PostController::edit/$1');
 $routes->post(from: '/posts/update/(:num)', to: 'PostController::update/$1');
 $routes->get(from: '/posts/delete/(:num)', to: 'PostController::delete/$1');
-$routes->get(from: 'posts/edit/(:num)', to: 'PostController::edit/$1');
-$routes->post(from: 'posts/update/(:num)', to: 'PostController::update/$1');
+// $routes->get(from: 'posts/edit/(:num)', to: 'PostController::edit/$1');
+// $routes->post(from: 'posts/update/(:num)', to: 'PostController::update/$1');

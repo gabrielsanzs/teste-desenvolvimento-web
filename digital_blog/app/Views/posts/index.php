@@ -70,7 +70,9 @@
         <h2 class="card-title"><?= $post['title'] ?></h2>
         <p class="card-text"><?= $post['description'] ?></p>
         <?php if (!empty($post['img_url'])): ?>
-          <img src="<?= $post['img_url'] ?>" alt="Imagem do Post" class="img-fluid mb-3">
+          <div class="d-flex justify-content-center">
+            <img src="<?= $post['img_url'] ?>" alt="Imagem do Post" class="img-fluid mb-3">
+          </div>
         <?php endif; ?>
       </div>
       <div class="card-footer text-end">

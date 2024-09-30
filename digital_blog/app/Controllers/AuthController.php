@@ -87,7 +87,6 @@ class AuthController extends Controller
     {
         $email = $this->request->getPost('email');
 
-        // Verifique se o usuário existe
         $userModel = new UserModel();
         $user = $userModel->where('email', $email)->first();
 
@@ -95,15 +94,10 @@ class AuthController extends Controller
             return redirect()->back()->with('error', 'Endereço de email não encontrado.');
         }
 
-        // Gere o token de redefinição de senha (você pode personalizar isso)
         $token = bin2hex(random_bytes(50));
 
-        // Aqui você pode salvar o token no banco de dados associado ao usuário, se necessário.
-
-        // Monte o link de redefinição de senha
         $resetLink = base_url('/reset-password?token=' . $token);
 
-        // Envio do email
         $emailService = \Config\Services::email();
 
         $emailService->setTo($email);
@@ -112,9 +106,10 @@ class AuthController extends Controller
 
         if ($emailService->send()) {
             return redirect()->back()->with('success', 'Email de redefinição de senha enviado com sucesso!');
-        } else {
+        } else {   
             return redirect()->back()->with('error', 'Erro ao enviar o email.');
         }
+        
     }
 
     public function resetPassword()
